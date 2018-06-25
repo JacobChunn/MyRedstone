@@ -6,6 +6,7 @@ boxsize = 60;
 boardX = 50;
 boardY = 50;
 buttons = [];
+var BentCheckbox;
 
 function setup() {
 	createCanvas(1000,1000);
@@ -14,6 +15,8 @@ function setup() {
 	
 	//using function I made for automating button creation process, found in logic.js
 //format is [button name], [xPos], [yPos], [what to change active_tool to]
+	easierButtons('Battery', 1000, 175, "battery")
+	easierButtons('Light', 1000, 200, "light")
 	easierButtons('Red Wire', 1000, 250, "normal_red_wire");
 	easierButtons('Red Insulated Wire', 1000, 275, "insul_red_wire");
 	easierButtons('Green Wire', 1000, 300, "normal_green_wire");
@@ -21,6 +24,10 @@ function setup() {
 	easierButtons('Blue Wire', 1000, 350, "normal_blue_wire");
 	easierButtons('Blue Insulated Wire', 1000, 375, "insul_blue_wire");
 	easierButtons('Empty Cell', 1000, 400, "blank");
+	
+	lightRotationInit();
+	
+	
 	
 	fill(150);	//Default Light Gray Cell
 	
@@ -48,9 +55,10 @@ function draw() {
 				/*update: this works, but it does not remove/write over portions of the squares that were once needed, 
 				but are no longer. This can be fixed by rewriting every call, or a more targeted system that keeps track of 
 				which positions it has active and updates when needed */
-				if (board[i][j].tileType == "insul_red_wire" || board[i][j].tileType == "insul_green_wire" ||board[i][j].tileType == "insul_blue_wire" ){
+				if (board[i][j].tileType == "insul_red_wire" || board[i][j].tileType == "insul_green_wire" ||board[i][j].tileType == "insul_blue_wire" ||board[i][j].tileType == "light"){
 					board[i][j].checkUpdate();
 				}
+				
 			}
 		}
 	}

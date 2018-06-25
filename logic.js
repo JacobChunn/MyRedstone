@@ -28,6 +28,7 @@ function checkSimilar(thisCol, thisRow){ //returns array of 1's and 0's, 1 means
 	return(similar);
 }
 
+
 function easierButtons(buttonName, x, y, varToPass){
 	buttons.push(createButton(buttonName));
 	buttons[buttons.length-1].position(x,y);
